@@ -1,0 +1,28 @@
+name: Basic CI
+
+on:
+  push:
+    branches:
+      - main  # Trigger this workflow only when pushing to the main branch
+  
+jobs:
+  build:
+    runs-on: ubuntu-latest  # Using an Ubuntu runner
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2  # A reusable action provided by GitHub
+
+      - name: Run a script
+        run: echo "Hello, GitHub Actions!"  # Print a message in the log
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14'
+
+      - name: Install dependencies
+        run: npm install  # Install dependencies if there are any in the repository
+      
+      - name: Run tests
+        run: npm test  # Run tests (this assumes a test script is set up in the project)
